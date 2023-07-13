@@ -11,8 +11,8 @@
       <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="./assets/css/materialize.min.css"  media="screen,projection"/>
-      <link rel="stylesheet" href="./assets/css/style.css"/>
+      <link type="text/css" rel="stylesheet" href="./css/materialize.min.css"  media="screen,projection"/>
+      <link rel="stylesheet" href="./css/style.css"/>
 </head>
 
 <body>
@@ -47,7 +47,7 @@
 
             <div class="input-field col s6">
               <input placeholder="Vulcan" id="city-search" type="text" class="validate">
-              <label for="city-search" id="label-font">Search for a city:</label>
+              <label for="first_name">Search for a city:</label>
               <button class="btn waves-effect waves-light" id="search-button" type="submit" name="action">Search
                 <i class="material-icons right">send</i>
               </button>
@@ -69,10 +69,10 @@
           <!-- CITY & CURRENT DAY STUFFS -->
           <div class="card horizontal">
             <div class="card-stacked">
-              <h2 id="city"></h2>
-              <h6 id="temp"></h6>
-              <h6 id="humidity"></h6>
-              <h6 id="wind-speed"></h6>
+              <h2 class="header" id="city"></h2>
+              <p id="temp"></p>
+              <p id="humidity"></p>
+              <p id="wind-speed"></p>
             </div>
           </div>
           
@@ -173,9 +173,9 @@
   
     <!--  Scripts-->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="./assets/js/materialize.js"></script>
-    <script type="text/javascript" src="./assets/js/materialize.min.js"></script>
-    <script src="./assets/js/init.js"></script>
-    <script src="./assets/js/scritp.js"></script>
+    <script src="./js/materialize.js"></script>
+    <script type="text/javascript" src="./js/materialize.min.js"></script>
+    <script src="./js/init.js"></script>
+    <script src="./js/scritp.js"></script>
 </body>
 </html>

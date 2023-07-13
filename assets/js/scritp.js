@@ -1,7 +1,7 @@
 // Local (non DOM dependent) variables
 var weatherAPIkey = '7fac6e8cffdaa3cd49f9c22da4505782';
-// var arg1 = "Fayetteville,US-NC";
 var arg1 = 35.053726;
+// var lat = "Fayetteville,US-NC";
 var arg2 = -78.880234;
 
 function getW(){
@@ -11,7 +11,7 @@ function getW(){
     fetch(URL)
         .then(function (response){
             if(response.status != 200){
-                console.log("!!!PROBLEMS IN FETCH!!!: ", response);
+                console.log("response: ", response);
             }
             return response.json();
         })
@@ -37,38 +37,24 @@ function buildURL(){
     }
 }
 
-function makeImg(code){
-    var iconurl = "http://openweathermap.org/img/w/" + code + ".png";
-    let img = $('<img>');
-    
-    img.attr('src', iconurl);
-    img.attr('width', '50');
-    img.attr('height', '50');
-    img.attr('alt', "weather-icon");
-    return img;
-}
-
-$(document).ready(function(){let citySearch = $('#city-search');
+$(document).ready(function(){
+    let citySearch = $('#city-search');
     let searchBtn = $('#search-button');
     let city = $('#city');
     let temp = $('#temp');
     let humidity = $('#humidity');
     let windSpeed = $('#wind-speed');
 
+    city.text("Fayetteville");
+    temp.text("69*");
+    humidity.text("moist");
+    windSpeed.text("blows");
+
     searchBtn.on('click', function(e){
         let cs = $(e.target).parent().children();
-
-        // TODO:  Need logic to grab this code for reelz
-        let iconCode = "10d";
-        let img = makeImg(iconCode);
-        
+        console.log("button>> ", cs.val());
         city.text(cs.val());
-        city.append(img);
-        temp.text("69*");
-        humidity.text("moist");
-        windSpeed.text("blows");
-        cs.val('');
     });
-    getW();
+    //getW();
 });
 
