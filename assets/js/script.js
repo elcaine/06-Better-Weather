@@ -68,6 +68,6 @@ $(document).ready(function(){let citySearch = $('#city-search');
         windSpeed.text("blows");
         cs.val('');
     });
-    getW();
+    // getW();
 });
 

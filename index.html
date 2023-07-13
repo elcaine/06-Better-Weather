@@ -34,70 +34,166 @@
       </div>
     </nav>
     
-    <!-- Orange letters stuffs -->
     <div class="section no-pad-bot" id="index-banner">
-      
-
-
       <div class="row">
-        <div class="col s12 m4">
-          <!-- COL -->
+        <div class="container">
+          <div class="col m12">
 
-          <div class="icon-block">
-
-            <div class="input-field col s6">
-              <input placeholder="Vulcan" id="city-search" type="text" class="validate">
-              <label for="city-search" id="label-font">Search for a city:</label>
-              <button class="btn waves-effect waves-light" id="search-button" type="submit" name="action">Search
-                <i class="material-icons right">send</i>
-              </button>
+            <div class="col m3">
+              <!-- CITY SEARCH INPUT FIELD -->
+              <div class="icon-block">
+                <div class="input-field">
+                  <input placeholder="Vulcan" id="city-search" type="text" class="validate">
+                  <label for="city-search" id="label-font">Search for a city:</label>
+                  <button class="btn waves-effect waves-light" id="search-button" type="submit" name="action">Search
+                    <i class="material-icons right">send</i>
+                  </button>
+                </div>
+              </div>
             </div>
-
-          <br><br>
-            <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
-            <h5 class="center">Speeds up development</h5>
-
-            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
-          </div>
-
-          <!-- COL -->
-        </div>
-
-        <div class="col s12 m7">
-          <!-- COL -->
           
-          <!-- CITY & CURRENT DAY STUFFS -->
-          <div class="card horizontal">
-            <div class="card-stacked">
-              <h2 id="city"></h2>
-              <h6 id="temp"></h6>
-              <h6 id="humidity"></h6>
-              <h6 id="wind-speed"></h6>
+            <!-- CURRENT CITY STUFFS -->
+            <div class="col m9">
+              <div class="card horizontal">
+                <div class="card-stacked">
+                  <h2 id="city">City</h2>
+                  <h6 id="temp">Temp</h6>
+                  <h6 id="humidity">Humidity</h6>
+                  <h6 id="wind-speed">Wind-speed</h6>
+                </div>
+              </div>
+            </div>
+          <div class="col m2">
+            
+          </div>  
+        </div>
+      </div>
+
+        <!-- 5DAY AND STORED CITIES -->
+        <div class="col m12">          
+          <div class="container">
+            <div class="row">
+
+              <div class="col m2">
+                <ul class="collection">
+                  <li class="collection-item"><a class="waves-effect waves-light btn">button</a></li>
+                  <li class="collection-item"><a class="waves-effect waves-light btn">button</a></li>
+                  <li class="collection-item"><a class="waves-effect waves-light btn">button</a></li>
+                  <li class="collection-item"><a class="waves-effect waves-light btn">button</a></li>
+                </ul>
+              </div>
+
+              <div class="col m2">
+                <div class="card blue-grey darken-1 card-content white-text">
+                  <span class="card-title">9/14/2022</span>
+                  <i><img src="http://openweathermap.org/img/w/10d.png" alt="weather-icon"/></i>
+                  <h6 id="temp2">temp2</h6>
+                  <h6 id="humidity2">humidity2</h6>
+                  <h6 id="wind-speed2">wind-speed2</h6>
+                </div>
+              </div>
+
+              <div class="col m2">
+                <div class="card blue-grey darken-1 card-content white-text">
+                  <span class="card-title">9/14/2022</span>
+                  <i><img src="http://openweathermap.org/img/w/10d.png" alt="weather-icon"/></i>
+                  <h6 id="temp2">temp2</h6>
+                  <h6 id="humidity2">humidity2</h6>
+                  <h6 id="wind-speed2">wind-speed2</h6>
+                </div>
+              </div>
+
+              <div class="col m2">
+                <div class="card blue-grey darken-1 card-content white-text">
+                  <span class="card-title">9/14/2022</span>
+                  <i><img src="http://openweathermap.org/img/w/10d.png" alt="weather-icon"/></i>
+                  <h6 id="temp2">temp2</h6>
+                  <h6 id="humidity2">humidity2</h6>
+                  <h6 id="wind-speed2">wind-speed2</h6>
+                </div>
+              </div>
+
+              <div class="col m2">
+                <div class="card blue-grey darken-1 card-content white-text">
+                  <span class="card-title">9/14/2022</span>
+                  <i><img src="http://openweathermap.org/img/w/10d.png" alt="weather-icon"/></i>
+                  <h6 id="temp2">temp2</h6>
+                  <h6 id="humidity2">humidity2</h6>
+                  <h6 id="wind-speed2">wind-speed2</h6>
+                </div>
+              </div>
+
+              <div class="col m2">
+                <div class="card blue-grey darken-1 card-content white-text">
+                  <span class="card-title">9/14/2022</span>
+                  <i><img src="http://openweathermap.org/img/w/10d.png" alt="weather-icon"/></i>
+                  <h6 id="temp2">temp2</h6>
+                  <h6 id="humidity2">humidity2</h6>
+                  <h6 id="wind-speed2">wind-speed2</h6>
+                </div>
+              </div>
+
             </div>
           </div>
-          
-          <!-- COL -->
         </div>
-
         
-      <div class="container">
+      <!-- <div class="container">
         <br>Hellozz<br>
         <h1 class="header center orange-text">Starter Template</h1>
 
-        <!-- Other GET STARTED stuff -->
-        <div class="row center">
-          <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+        <div class="col s6 m3">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">9/14/2022</span>
+              <i><img src="http://openweathermap.org/img/w/10d.png" alt="weather-icon"/></i>
+              <h6 id="temp2">temp2</h6>
+              <h6 id="humidity2">humidity2</h6>
+              <h6 id="wind-speed2">wind-speed2</h6>
+            </div>
+          </div>
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">9/14/2022</span>
+              <i><img src="http://openweathermap.org/img/w/10d.png" alt="weather-icon"/></i>
+              <h6 id="temp2">temp2</h6>
+              <h6 id="humidity2">humidity2</h6>
+              <h6 id="wind-speed2">wind-speed2</h6>
+            </div>
+          </div>
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">9/14/2022</span>
+              <i><img src="http://openweathermap.org/img/w/10d.png" alt="weather-icon"/></i>
+              <h6 id="temp2">temp2</h6>
+              <h6 id="humidity2">humidity2</h6>
+              <h6 id="wind-speed2">wind-speed2</h6>
+            </div>
+          </div>
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">9/14/2022</span>
+              <i><img src="http://openweathermap.org/img/w/10d.png" alt="weather-icon"/></i>
+              <h6 id="temp2">temp2</h6>
+              <h6 id="humidity2">humidity2</h6>
+              <h6 id="wind-speed2">wind-speed2</h6>
+            </div>
+          </div>
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">9/14/2022</span>
+              <i><img src="http://openweathermap.org/img/w/10d.png" alt="weather-icon"/></i>
+              <h6 id="temp2">temp2</h6>
+              <h6 id="humidity2">humidity2</h6>
+              <h6 id="wind-speed2">wind-speed2</h6>
+            </div>
+          </div>
         </div>
-        <div class="row center">
-          <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
-        </div>
-        <br><br>
-  
-      </div>
+        
+      </div> -->
     </div>
   
   
-    <div class="container">
+    <!-- <div class="container">
       <div class="section">
         <div class="row">
 
@@ -132,7 +228,7 @@
         </div>  
       </div>
       <br><br>
-    </div>
+    </div> -->
   
     <footer class="page-footer orange">
       <div class="container">
