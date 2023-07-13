@@ -5,8 +5,9 @@ var arg1 = "Fayetteville";
 var arg2;// = -78.880234;
 
 function getW(){
+    let latlon = getLatLon();
     let URL = buildURL();
-    console.log(URL);
+    console.log("latlon>>>>>> ", latlon);
     fetch(URL)
         .then(function (response){
             if(response.status != 200){
@@ -15,7 +16,7 @@ function getW(){
             return response.json();
         })
         .then(function (data){
-            console.log(">>> ", JSON.stringify(data));
+            // console.log(">>> ", JSON.stringify(data));
             // Taken from Twitter example (.name prolly Twit specific)
             // for (var i = 0; i < data.length; i++) {
             //   console.log(data[i].name);
@@ -36,6 +37,28 @@ function buildURL(){
     }
 }
 
+function getLatLon(){
+    let URL = 'http://api.openweathermap.org/geo/1.0/direct?q=' + arg1 + ',NC,US&appid=' + weatherAPIkey;
+
+    // var lat = 35.053726;
+    // var lon = -78.880234;
+
+    fetch(URL)
+        .then(function (response){
+            if(response.status != 200){
+                console.log("lat/lon not gott'd", response);
+            }
+            return response.json();
+        })
+        .then(function (data){
+            console.log("from fetch insie getLatLon(): ", data);
+            let lat = data[0].lat;
+            let lon = data[0].lon;
+            console.log("still in it\tlat = ", lat, "\tlon = ", lon);
+            return [lat, lon];
+        });
+}
+
 function makeImg(code){
     var iconurl = "http://openweathermap.org/img/w/" + code + ".png";
     let img = $('<img>');
@@ -47,7 +70,8 @@ function makeImg(code){
     return img;
 }
 
-$(document).ready(function(){let citySearch = $('#city-search');
+$(document).ready(function(){
+    let citySearch = $('#city-search');
     let searchBtn = $('#search-button');
     let city = $('#city');
     let temp = $('#temp');
@@ -55,19 +79,17 @@ $(document).ready(function(){let citySearch = $('#city-search');
     let windSpeed = $('#wind-speed');
 
     searchBtn.on('click', function(e){
-        let cs = $(e.target).parent().children();
-
         // TODO:  Need logic to grab this code for reelz
         let iconCode = "10d";
         let img = makeImg(iconCode);
         
-        city.text(cs.val());
+        city.text(citySearch.val());
         city.append(img);
         temp.text("69*");
         humidity.text("moist");
         windSpeed.text("blows");
-        cs.val('');
+        citySearch.val('');
+        getW();
     });
-    // getW();
 });
 
