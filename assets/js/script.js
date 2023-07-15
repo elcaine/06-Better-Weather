@@ -1,47 +1,76 @@
 // Local (non DOM dependent) variables
-var weatherAPIkey = '7fac6e8cffdaa3cd49f9c22da4505782';
-var arg1 = "Fayetteville";
-// var arg1 = 35.053726;
-var arg2;// = -78.880234;
+const weatherAPIkey = '7fac6e8cffdaa3cd49f9c22da4505782';
+const numDays = 5;
+const cityRayKey = 'cityRayKey';
+let cityRay;
+let row = $('#stored-and-5day');
 
-function getW(){
-    let latlon = getLatLon();
-    let URL = buildURL();
-    console.log("latlon>>>>>> ", latlon);
-    fetch(URL)
-        .then(function (response){
-            if(response.status != 200){
-                console.log("!!!PROBLEMS IN FETCH!!!: ", response);
-            }
-            return response.json();
-        })
-        .then(function (data){
-            // console.log(">>> ", JSON.stringify(data));
-            // Taken from Twitter example (.name prolly Twit specific)
-            // for (var i = 0; i < data.length; i++) {
-            //   console.log(data[i].name);
-            // }
-        })
-}
-
-function buildURL(){
-    // 2nd arg empty, must be city
-    if(!arg2 || arg2 === ""){
-        console.log("$$$$$$$$$$$$$$\nstr2: ", arg2, "\ttype: ", typeof(arg2));
-        // http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
-        return 'http://api.openweathermap.org/geo/1.0/direct?q=' + arg1 + ',NC,US&appid=' + weatherAPIkey;
-        // Both args used, must be lat/lon   * TODO: maybe third option for empty str1???  ...  OR MAYBE isNumber something
-    } else {
-        // return 'http://api.openweathermap.org/geo/1.0/reverse?lat=' + arg1 + '&lon=' + arg2 + '&appid=' + weatherAPIkey;
-        return 'https://api.openweathermap.org/data/3.0/onecall?lat=' + arg1 + '&lon=' + arg2 + '&appid=' + weatherAPIkey;
+function init(){
+    let loadRay = localStorage.getItem(cityRayKey);
+    if(loadRay){
+        cityRay = JSON.parse(loadRay);
+        searchedCitiesHTML(cityRay);
+    } else{
+        cityRay = new Array();
     }
 }
 
-function getLatLon(){
-    let URL = 'http://api.openweathermap.org/geo/1.0/direct?q=' + arg1 + ',NC,US&appid=' + weatherAPIkey;
+$(document).ready(function(){
+    init();
+    let searchBtn = $('#search-button');
 
-    // var lat = 35.053726;
-    // var lon = -78.880234;
+    searchBtn.on('click', function(e){
+        let city = $('#city-search').val();
+        saveSearchCityThenBuild(city);
+        weatherAPI(city);
+    });
+
+    row.on('click', 'li', function(){
+        console.log("herro there--> ", $(this).text());
+        saveSearchCityThenBuild($(this).text());
+        weatherAPI($(this).text());
+    });
+});
+
+function saveSearchCityThenBuild(city){
+    if(!cityRay.includes(city)){
+        cityRay.push(city);
+    }
+    let rayStr = JSON.stringify(cityRay);
+    localStorage.setItem(cityRayKey, rayStr);
+    searchedCitiesHTML(cityRay);
+}
+
+function searchedCitiesHTML(cityRay){
+    let div = $('<div>');
+    let ul = $('<ul>');
+
+    row.empty();
+    div.addClass('col m2');
+    ul.addClass('collection');
+    for(let index = 0; index < cityRay.length; index++){
+        let li = $('<li>');
+        let a = $('<a>');
+        li.addClass('collection-item');
+        a.addClass('waves-effect waves-light btn');
+    
+        a.text(cityRay[index]);
+        li.append(a);
+        ul.append(li);
+    }
+    div.append(ul);
+    row.append(div);
+}
+
+function buildURL(latlon){
+    // return 'http://api.openweathermap.org/geo/1.0/reverse?lat=' + arg1 + '&lon=' + arg2 + '&appid=' + weatherAPIkey;
+    return 'https://api.openweathermap.org/data/3.0/onecall?lat=' + latlon[0] + '&lon=' + latlon[1] + '&appid=' + weatherAPIkey + '&units=imperial';
+}
+
+function weatherAPI(city){
+    // + city + ',NC,US&appid=' + weatherAPIkey;
+        // http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
+    let URL = 'http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&appid=' + weatherAPIkey;
 
     fetch(URL)
         .then(function (response){
@@ -51,12 +80,74 @@ function getLatLon(){
             return response.json();
         })
         .then(function (data){
-            console.log("from fetch insie getLatLon(): ", data);
+            $('#city').text(data[0].name + " " + dayjs().format('M/D/YY'));
             let lat = data[0].lat;
             let lon = data[0].lon;
-            console.log("still in it\tlat = ", lat, "\tlon = ", lon);
-            return [lat, lon];
+            getWeather([lat, lon]);
         });
+}
+
+function getWeather(latlon){
+    let URL = buildURL(latlon);
+    
+    fetch(URL)
+        .then(function (response){
+            if(response.status != 200){
+                console.log("!!!PROBLEMS IN FETCH!!!: ", response);
+            }
+            return response.json();
+        })
+        .then(function (data){
+            todayWeather(data.current);
+            futureWeather(data.daily);
+        });
+}
+
+function todayWeather(w){
+    let citySearch = $('#city-search');
+    let temp = $('#temp');
+    let humidity = $('#humidity');
+    let windSpeed = $('#wind-speed');
+    let iconCode = w.weather[0].icon;
+    let img = makeImg(iconCode);
+    
+    $('#city').append(img);
+    temp.text("Temp: " + w.temp);
+    humidity.text("Humidity: " + w.humidity);
+    windSpeed.text("Wind speed: " + w.wind_speed);
+    citySearch.val('');
+}
+
+function futureWeather(w){
+    let row = $('#stored-and-5day');
+    let day = dayjs();
+    for(let index = 0; index < numDays; index++){
+        day = day.add(1, 'day');
+        let div1 = $('<div>');
+        let div2 =$('<div>');
+        let span = $('<span>');
+        let i = $('<i>');
+        let img = makeImg(w[index].weather[0].icon);
+        i.append(img);
+        let temp = $('<h6>');
+        let humid = $('<h6>');
+        let wind = $('<h6>');
+
+        div1.addClass('col m2');
+        div2.addClass('card blue-grey darken-1 card-content white-text');
+        span.addClass('card-title');
+        span.text(day.format('M/D/YY'));
+        temp.attr('id', "temp");
+        humid.attr('id', "humid");
+        wind.attr('id', "wind");
+    
+        temp.text("Temp: " + w[index].temp.day);
+        humid.text("Humidity: " + w[index].humidity);
+        wind.text("Wind: " + w[index].wind_speed);
+        div2.append(span, i, temp, humid, wind);
+        div1.append(div2);
+        row.append(div1);
+    }
 }
 
 function makeImg(code){
@@ -69,27 +160,3 @@ function makeImg(code){
     img.attr('alt', "weather-icon");
     return img;
 }
-
-$(document).ready(function(){
-    let citySearch = $('#city-search');
-    let searchBtn = $('#search-button');
-    let city = $('#city');
-    let temp = $('#temp');
-    let humidity = $('#humidity');
-    let windSpeed = $('#wind-speed');
-
-    searchBtn.on('click', function(e){
-        // TODO:  Need logic to grab this code for reelz
-        let iconCode = "10d";
-        let img = makeImg(iconCode);
-        
-        city.text(citySearch.val());
-        city.append(img);
-        temp.text("69*");
-        humidity.text("moist");
-        windSpeed.text("blows");
-        citySearch.val('');
-        getW();
-    });
-});
-

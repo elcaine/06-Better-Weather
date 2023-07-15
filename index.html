@@ -8,6 +8,12 @@
       src="https://code.jquery.com/jquery-3.1.1.min.js"
       integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
       crossorigin="anonymous"></script>
+
+      <script
+      src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+      integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+      crossorigin="anonymous"></script>
+
       <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
@@ -18,12 +24,10 @@
 <body>
     <!-- Header stuffs -->
     <nav class="light-blue lighten-1" role="navigation">
-      <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
-        <ul class="right hide-on-med-and-down">
-          <li><a href="#">Navbar Link</a></li>
-          <li><a href="#">Navbar Link2</a></li>
-          <li><a href="#">Navbar Link3</a></li>
-        </ul>
+      <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Weather Dashboard</a>
+        <div class="right">
+          <button type="button" id="clear-me">Clear storage</button>
+        </div>
   
         <ul id="nav-mobile" class="sidenav">
           <li><a href="#">Navbar Link MOBILE</a></li>
@@ -36,7 +40,6 @@
     
     <div class="section">
       <div class="row">
-        <div class="container">
           <div class="col m12">
 
             <div class="col m3">
@@ -66,76 +69,13 @@
           <div class="col m2">
             
           </div>  
-        </div>
       </div>
 
       <!-- 5DAY AND STORED CITIES -->
-      <div class="col m12">          
-        <!-- <div class="container"> -->
-          <div class="row">
+          <div class="row" id="stored-and-5day">
 
-            <div class="col m2">
-              <ul class="collection">
-                <li class="collection-item"><a class="waves-effect waves-light btn">button</a></li>
-                <li class="collection-item"><a class="waves-effect waves-light btn">button</a></li>
-                <li class="collection-item"><a class="waves-effect waves-light btn">button</a></li>
-                <li class="collection-item"><a class="waves-effect waves-light btn">button</a></li>
-              </ul>
-            </div>
-
-            <div class="col m2">
-              <div class="card blue-grey darken-1 card-content white-text">
-                <span class="card-title">9/14/2022</span>
-                <i><img src="http://openweathermap.org/img/w/10d.png" alt="weather-icon"/></i>
-                <h6 id="temp2">temp2</h6>
-                <h6 id="humidity2">humidity2</h6>
-                <h6 id="wind-speed2">wind-speed2</h6>
-              </div>
-            </div>
-
-            <div class="col m2">
-              <div class="card blue-grey darken-1 card-content white-text">
-                <span class="card-title">9/14/2022</span>
-                <i><img src="http://openweathermap.org/img/w/10d.png" alt="weather-icon"/></i>
-                <h6 id="temp2">temp2</h6>
-                <h6 id="humidity2">humidity2</h6>
-                <h6 id="wind-speed2">wind-speed2</h6>
-              </div>
-            </div>
-
-            <div class="col m2">
-              <div class="card blue-grey darken-1 card-content white-text">
-                <span class="card-title">9/14/2022</span>
-                <i><img src="http://openweathermap.org/img/w/10d.png" alt="weather-icon"/></i>
-                <h6 id="temp2">temp2</h6>
-                <h6 id="humidity2">humidity2</h6>
-                <h6 id="wind-speed2">wind-speed2</h6>
-              </div>
-            </div>
-
-            <div class="col m2">
-              <div class="card blue-grey darken-1 card-content white-text">
-                <span class="card-title">9/14/2022</span>
-                <i><img src="http://openweathermap.org/img/w/10d.png" alt="weather-icon"/></i>
-                <h6 id="temp2">temp2</h6>
-                <h6 id="humidity2">humidity2</h6>
-                <h6 id="wind-speed2">wind-speed2</h6>
-              </div>
-            </div>
-
-            <div class="col m2">
-              <div class="card blue-grey darken-1 card-content white-text">
-                <span class="card-title">9/14/2022</span>
-                <i><img src="http://openweathermap.org/img/w/10d.png" alt="weather-icon"/></i>
-                <h6 id="temp2">temp2</h6>
-                <h6 id="humidity2">humidity2</h6>
-                <h6 id="wind-speed2">wind-speed2</h6>
-              </div>
-            </div>
 
           </div>
-        <!-- </div> -->
-      </div>
     </div>
   
     <!--  Scripts-->
