@@ -1,4 +1,4 @@
-# 06-Better-Weather :grin:
+# 06-Better-Weather :sunglasses:
 ## By Caine Winters
 
 
@@ -12,11 +12,11 @@
 
 ### Weather application mechanics
 - Type city into search field
-    - Enter or click <search> button to get results.
+    - Enter or click search button to get results.
     - If text input field is empty no action.
     - If no city is found, "No City found" displayed (no weather data).
 - Current city and date displayed prominently according to specification.
-- 5-day forecast displayed before prominent current day according to specification.
+- 5-day forecast displayed below prominent current day section according to specification.
 - "Clear storage" button added to upper right area to refresh page with cleared storage. 
 
 

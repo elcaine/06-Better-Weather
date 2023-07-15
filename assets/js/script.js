@@ -1,4 +1,4 @@
-// Local (non DOM dependent) variables fiindme
+// Local (non DOM dependent) variables
 const weatherAPIkey = '7fac6e8cffdaa3cd49f9c22da4505782';
 const fiveDayText = '5-Day Forecast:';
 const cityRayKey = 'cityRayKey';
@@ -116,6 +116,7 @@ function weatherAPI(city){
                 getWeather([lat, lon]);
             }
             catch{
+                $('#five-day-text').text('');
                 $('#temp').text('');
                 $('#humidity').text('');
                 $('#wind-speed').text('');
