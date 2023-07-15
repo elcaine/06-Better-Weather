@@ -1,8 +1,9 @@
-// Local (non DOM dependent) variables
+// Local (non DOM dependent) variables fiindme
 const weatherAPIkey = '7fac6e8cffdaa3cd49f9c22da4505782';
-const numDays = 5;
+const fiveDayText = '5-Day Forecast:';
 const cityRayKey = 'cityRayKey';
-const row = $('#stored-and-5day');
+const numDays = 5;
+let row;
 let cityRay;
 
 // Initializes page (new landing or clear-storage-refresh)
@@ -18,9 +19,10 @@ function init(){
 
 // Core work/logic here:  waits on html build before starting
 $(document).ready(function(){
-    init();
+    row = $('#stored-and-5day');
     let searchBtn = $('#search-button');
     let clearBtn = $('#clear-me');
+    init();
 
     // Search button for text input
     searchBtn.on('click', function(e){
@@ -185,6 +187,8 @@ function futureWeather(w){
         div2.append(span, i, temp, humid, wind);
         div1.append(div2);
         row.append(div1);
+
+        $('#five-day-text').text(fiveDayText);
     }
 }
 
