@@ -41,7 +41,6 @@ $(document).ready(function(){
 
     // Buttons for previous cities
     row.on('click', 'li', function(){
-        console.log("herro there--> ", $(this).text());
         saveSearchCityThenBuild($(this).text());
         weatherAPI($(this).text());
     });
@@ -98,7 +97,7 @@ function buildURL(latlon){
 function weatherAPI(city){
     // + city + ',NC,US&appid=' + weatherAPIkey;
         // http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
-    let URL = 'http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&appid=' + weatherAPIkey;
+    let URL = 'https://api.openweathermap.org/geo/1.0/direct?q=' + city + '&appid=' + weatherAPIkey;
 
     fetch(URL)
         .then(function (response){
@@ -115,7 +114,6 @@ function weatherAPI(city){
                 getWeather([lat, lon]);
             }
             catch{
-                console.log("data[0].name undefined maybe, data: ", data);    let temp = $('#temp');
                 $('#temp').text('');
                 $('#humidity').text('');
                 $('#wind-speed').text('');
@@ -192,7 +190,7 @@ function futureWeather(w){
 
 // Builds html icon element for openweathermap's icons
 function makeImg(code){
-    var iconurl = "http://openweathermap.org/img/w/" + code + ".png";
+    var iconurl = "https://openweathermap.org/img/w/" + code + ".png";
     let img = $('<img>');
     
     img.attr('src', iconurl);
